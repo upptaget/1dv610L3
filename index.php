@@ -7,6 +7,7 @@ require_once('view/LayoutView.php');
 require_once('controller/LoginController.php');
 require_once('controller/RegisterController.php');
 require_once('controller/MainController.php');
+require_once('model/Database.php');
 
 //MAKE SURE ERRORS ARE SHOWN... MIGHT WANT TO TURN THIS OFF ON A PUBLIC SERVER
 error_reporting(E_ALL);
@@ -19,7 +20,9 @@ $v = new \LoginSystemView\LayoutView();
 $lc = new \LoginSystemController\LoginController();
 $rc = new \LoginSystemController\RegisterController();
 $mc = new \LoginSystemController\MainController($rc, $lc, $v, $lv);
+$db = new \LoginSystemModel\Database();
 
 $mc->router();
+$db->connectToDatabase();
 
 $v->render(false, $lv, $dtv);

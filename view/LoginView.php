@@ -44,7 +44,7 @@ class LoginView {
 	}
 
 	/**
-	* Generate HTML code on the output buffer for the logout button
+	* Generate HTML code on the output buffer for the login form
 	* @param $message, String output message
 	* @return  void, BUT writes to standard output!
 	*/

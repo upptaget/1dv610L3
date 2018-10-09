@@ -11,7 +11,9 @@ class MainController {
     $this->layoutView = $v;
   }
 
-
+  /**
+   * Checks for user actions
+   */
   public function router() {
     if ($this->loginView->tryLogin() && !$this->loginView->keepLoggedIn()) {
       echo 'User pressed login';
@@ -21,7 +23,7 @@ class MainController {
       echo 'User clicked login, and wants to be kept logged in';
     }
 
-    if ($this->layoutView->userWantsToRegister()) {
+    if ($this->layoutView->toRegister()) {
       echo 'User wants to register';
     }
   }

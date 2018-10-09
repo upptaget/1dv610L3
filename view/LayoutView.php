@@ -4,7 +4,7 @@ namespace LoginSystemView;
 
 class LayoutView {
 
-  public function render($isLoggedIn, LoginView $v, DateTimeView $dtv) {
+  public function render($isLoggedIn, LoginView $lv, DateTimeView $dtv) {
     echo '<!DOCTYPE html>
       <html>
         <head>
@@ -17,7 +17,7 @@ class LayoutView {
           ' . $this->renderIsLoggedIn($isLoggedIn) . '
 
           <div class="container">
-              ' . $v->response() . '
+              ' . $lv->response() . '
 
               ' . $dtv->show() . '
           </div>
@@ -29,7 +29,7 @@ class LayoutView {
     return '<a href="?register">Register a new user</a>';
   }
 
-  public function userWantsToRegister() {
+  public function toRegister() {
     return isset($_GET['register']);
   }
 
