@@ -14,6 +14,7 @@ require_once('controller/MainController.php');
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 
+
 //CREATE OBJECTS OF THE VIEWS
 $db = new \LoginSystemModel\Database();
 $li = new \LoginSystemModel\UserLogin($db);

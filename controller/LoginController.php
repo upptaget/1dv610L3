@@ -22,9 +22,24 @@ class LoginController {
 
       $loginAttempt = $this->userLogin->Login($this->loginView->getRequestUsername(),$this->loginView->getRequestPassword());
       $this->layoutView->setLoginStatus($loginAttempt);
+      $this->loginView->setMessage('Welcome!');
 
     } catch (\Exception $e) {
-      
+
+      $this->loginView->setMessage($e->getMessage());
+    }
+  }
+
+  public function LoginAttemptWithCookies()
+  {
+    try {
+
+      $loginAttempt = $this->userLogin->Login($this->loginView->getCookieUsername(),$this->loginView->getCookiePassword());
+      $this->layoutView->setLoginStatus($loginAttempt);
+      $this->loginView->setMessage('Welcome back with cookies!');
+
+    } catch (\Exception $e) {
+
       $this->loginView->setMessage($e->getMessage());
     }
   }

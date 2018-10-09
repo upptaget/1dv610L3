@@ -23,11 +23,11 @@ class MainController {
      * controller.
      *
      */
-    if ($this->loginView->tryLogin() && !$this->loginView->keepLoggedIn()) {
+    if ($this->loginView->tryLogin()) {
       $this->loginController->LoginAttempt();
     }
-    if ($this->loginView->tryLogin() && $this->loginView->keepLoggedIn()) {  // TODO: Login with cookies here
-      echo 'User clicked login, and wants to be kept logged in';
+    if ($this->loginView->cookieIsSet()) {
+      $this->loginController->LoginAttemptWithCookies();
     }
 
     /**

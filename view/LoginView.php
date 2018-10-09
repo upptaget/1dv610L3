@@ -7,8 +7,8 @@ class LoginView {
 	private static $logout = 'LoginView::Logout';
 	private static $name = 'LoginView::UserName';
 	private static $password = 'LoginView::Password';
-	//private static $cookieName = 'LoginView::CookieName';
-	//private static $cookiePassword = 'LoginView::CookiePassword';
+	private static $cookieName = 'LoginView::CookieName';
+	private static $cookiePassword = 'LoginView::CookiePassword';
 	private static $keep = 'LoginView::KeepMeLoggedIn';
 	private static $messageId = 'LoginView::Message';
 	private $message ='';
@@ -26,8 +26,17 @@ class LoginView {
 		$response = '';
 
 		if($isLoggedIn) {
+
+				// Set cookies if keep login checkbox is checked.
+			if($this->keepLoggedIn()) {
+				\setcookie(self::$cookieName, $this->getRequestUserName(), time() + (86400 * 30));
+				\setcookie(self::$cookiePassword, $this->getRequestPassword(), time() + (86400 * 30));
+			}
+
 			$response .= $this->generateLogoutButtonHTML();
+
 		} else {
+
 			$response = $this->generateLoginFormHTML();
 		}
 
@@ -83,6 +92,13 @@ class LoginView {
 		return $_POST[self::$name];
 	}
 
+	public function getCookieUserName() {
+		if (empty($_COOKIE[self::$cookieName])) {
+			throw new \Exception('Username is missing from cookie');
+		}
+		return $_COOKIE[self::$cookieName];
+	}
+
 	public function getRequestPassword() {
 		if (empty($_POST[self::$password])) {
 			throw new \Exception('Password is missing');
@@ -90,16 +106,32 @@ class LoginView {
 		return $_POST[self::$password];
 	}
 
-	public function tryLogin () : bool {
+	public function getCookiePassword() {
+		if (empty($_COOKIE[self::$cookiePassword])) {
+			throw new \Exception('Password is missing from cookie');
+		}
+		return $_COOKIE[self::$cookiePassword];
+	}
+
+	public function tryLogin() : bool {
 			return isset($_POST[self::$login]);
 	}
 
-	public function logout () : bool {
+	public function logout() : bool {
 		return isset($_POST[self::$logout]);
 }
 
 	public function keepLoggedIn() : bool {
 		return isset($_POST[self::$keep]);
+	}
+
+	public function cookieIsSet() {
+		return isset($_COOKIE[self::$cookieName]) && isset($_COOKIE[self::$cookiePassword]);
+	}
+
+	public function removeCookies() {
+		\setcookie(self::$cookieName, '', time() - 3600);
+		\setcookie(self::$cookiePassword, '', time() - 3600);
 	}
 
 	public function setMessage($message) {
