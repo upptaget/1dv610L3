@@ -35,6 +35,7 @@ class MainController {
      */
     if ($this->loginView->logout()) {
       $this->layoutView->setLoginStatus(false);
+      $this->loginView->removeCookies();
       $this->loginView->setMessage('Bye bye!'); // This is not good.. use enum for messages?
     }
 
