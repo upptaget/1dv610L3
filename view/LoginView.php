@@ -78,5 +78,8 @@ class LoginView {
 	public function tryLogin () : bool {
 			return isset($_POST[self::$login]);
 	}
+	public function keepLoggedIn() {
+		return isset($_POST[self::$keep]);
+	}
 
 }

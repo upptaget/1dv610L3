@@ -13,6 +13,7 @@ class LayoutView {
         </head>
         <body>
           <h1>Assignment 2</h1>
+          ' . $this->displayLink() . '
           ' . $this->renderIsLoggedIn($isLoggedIn) . '
 
           <div class="container">
@@ -23,6 +24,13 @@ class LayoutView {
          </body>
       </html>
     ';
+  }
+  private function displayLink() {
+    return '<a href="?register">Register a new user</a>';
+  }
+
+  public function userWantsToRegister() {
+    return isset($_GET['register']);
   }
 
   private function renderIsLoggedIn($isLoggedIn) {

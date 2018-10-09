@@ -13,13 +13,13 @@ error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 
 //CREATE OBJECTS OF THE VIEWS
-$v = new \LoginSystemView\LoginView();
+$lv = new \LoginSystemView\LoginView();
 $dtv = new \LoginSystemView\DateTimeView();
-$lv = new \LoginSystemView\LayoutView();
+$v = new \LoginSystemView\LayoutView();
 $lc = new \LoginSystemController\LoginController();
 $rc = new \LoginSystemController\RegisterController();
-$mc = new \LoginSystemController\MainController($rc, $lc, $v);
+$mc = new \LoginSystemController\MainController($rc, $lc, $v, $lv);
 
 $mc->router();
 
-$lv->render(false, $v, $dtv);
+$v->render(false, $lv, $dtv);
