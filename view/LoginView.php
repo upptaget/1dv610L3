@@ -7,8 +7,8 @@ class LoginView {
 	private static $logout = 'LoginView::Logout';
 	private static $name = 'LoginView::UserName';
 	private static $password = 'LoginView::Password';
-	private static $cookieName = 'LoginView::CookieName';
-	private static $cookiePassword = 'LoginView::CookiePassword';
+	//private static $cookieName = 'LoginView::CookieName';
+	//private static $cookiePassword = 'LoginView::CookiePassword';
 	private static $keep = 'LoginView::KeepMeLoggedIn';
 	private static $messageId = 'LoginView::Message';
 	private $message ='';
@@ -93,7 +93,12 @@ class LoginView {
 	public function tryLogin () : bool {
 			return isset($_POST[self::$login]);
 	}
-	public function keepLoggedIn() {
+
+	public function logout () : bool {
+		return isset($_POST[self::$logout]);
+}
+
+	public function keepLoggedIn() : bool {
 		return isset($_POST[self::$keep]);
 	}
 

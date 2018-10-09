@@ -26,8 +26,7 @@ class UserLogIn {
 			return true;
 
 		} else {
-      echo 'Not logged in';
-			return false;
+      throw new \Exception('Wrong name or password');
 		}
   }
 }
