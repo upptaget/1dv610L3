@@ -1,5 +1,6 @@
 <?php
 
+namespace LoginSystemView;
 
 class LayoutView {
 
