@@ -20,10 +20,10 @@ $li = new \LoginSystemModel\UserLogin($db);
 $lv = new \LoginSystemView\LoginView();
 $dtv = new \LoginSystemView\DateTimeView();
 $v = new \LoginSystemView\LayoutView();
-$lc = new \LoginSystemController\LoginController($li, $lv);
+$lc = new \LoginSystemController\LoginController($li, $lv, $v);
 $rc = new \LoginSystemController\RegisterController();
 $mc = new \LoginSystemController\MainController($rc, $lc, $v, $lv);
 
 $mc->router();
 
-$v->render(false, $lv, $dtv);
+$v->render($lv, $dtv);

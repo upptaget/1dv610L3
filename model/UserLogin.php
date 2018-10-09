@@ -20,7 +20,6 @@ class UserLogIn {
 
 		if($match && password_verify($password, $match['password'])) {
 
-      echo 'Logged in';
 			return true;
 
 		} else {

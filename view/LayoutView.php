@@ -4,7 +4,9 @@ namespace LoginSystemView;
 
 class LayoutView {
 
-  public function render($isLoggedIn, LoginView $lv, DateTimeView $dtv) {
+  private $isLoggedIn;
+
+  public function render(LoginView $lv, DateTimeView $dtv) {
     echo '<!DOCTYPE html>
       <html>
         <head>
@@ -14,10 +16,10 @@ class LayoutView {
         <body>
           <h1>Assignment 2</h1>
           ' . $this->displayLink() . '
-          ' . $this->renderIsLoggedIn($isLoggedIn) . '
+          ' . $this->renderIsLoggedIn() . '
 
           <div class="container">
-              ' . $lv->response() . '
+              ' . $lv->response($this->isLoggedIn) . '
 
               ' . $dtv->show() . '
           </div>
@@ -26,19 +28,28 @@ class LayoutView {
     ';
   }
   private function displayLink() {
-    return '<a href="?register">Register a new user</a>';
+    if (!$this->isLoggedIn) {
+      return '<a href="?register">Register a new user</a>';
+    }
+    else {
+      return "" ;
+    }
   }
 
   public function toRegister() {
     return isset($_GET['register']);
   }
 
-  private function renderIsLoggedIn($isLoggedIn) {
-    if ($isLoggedIn) {
+  private function renderIsLoggedIn() {
+    if ($this->isLoggedIn) {
       return '<h2>Logged in</h2>';
     }
     else {
       return '<h2>Not logged in</h2>';
     }
   }
+
+  public function setLoginStatus(bool $isLoggedIn) {
+		$this->isLoggedIn = $isLoggedIn;
+	}
 }
