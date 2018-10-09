@@ -5,10 +5,12 @@ class MainController {
 
   private $loginView;
   private $layoutView;
+  private $loginController;
 
   public function __construct (RegisterController $rc, LoginController $lc, \LoginSystemView\LayoutView $v, \LoginSystemView\LoginView $lv) {
     $this->loginView = $lv;
     $this->layoutView = $v;
+    $this->loginController = $lc;
   }
 
   /**
@@ -16,7 +18,7 @@ class MainController {
    */
   public function router() {
     if ($this->loginView->tryLogin() && !$this->loginView->keepLoggedIn()) {
-      echo 'User pressed login';
+      $this->loginController->LoginAttempt();
     }
 
     if ($this->loginView->tryLogin() && $this->loginView->keepLoggedIn()) {

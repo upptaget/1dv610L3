@@ -3,7 +3,13 @@ namespace LoginSystemController;
 
 class LoginController {
 
-  public function __construct () {
-    // echo ' LoginController';
+  private $userLogin;
+
+  public function __construct (\LoginSystemModel\UserLogin $li) {
+    $this->userLogin = $li;
+  }
+  public function LoginAttempt()
+  {
+    $this->userLogin->Login('test', 'testar');
   }
 }
