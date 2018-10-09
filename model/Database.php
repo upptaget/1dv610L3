@@ -4,6 +4,10 @@ namespace LoginSystemModel;
 
 class Database {
 
+    /**
+     * Connects to SQL db on localhost.
+     *
+     */
     public function connectToDatabase () {
 
       $server = "localhost";
@@ -11,6 +15,7 @@ class Database {
       $pass = "test";
       $database = "auth";
 
+      // TODO: Fix the catch!
       try {
 			 return $connection = new \PDO("mysql:host=$server;dbname=$database;", $user, $pass);
 		  }

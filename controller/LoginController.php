@@ -12,6 +12,10 @@ class LoginController {
     $this->layoutView = $v;
 
   }
+
+  /**
+   * Does a login attempt and catches exception to pass as message to view if failed.
+   */
   public function LoginAttempt()
   {
     try {

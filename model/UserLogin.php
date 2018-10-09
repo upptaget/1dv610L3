@@ -11,6 +11,9 @@ class UserLogIn {
     $this->database = $db;
   }
 
+  /**
+   * Checks database if credentials matches.
+   */
   public function Login($username, $password) {
 		$connection = $this->database->connectToDatabase();
 		$selection = $connection->prepare('SELECT id,name,password FROM users WHERE name = :name');
