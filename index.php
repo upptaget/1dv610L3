@@ -26,7 +26,5 @@ $rc = new \LoginSystemController\RegisterController();
 $mc = new \LoginSystemController\MainController($rc, $lc, $v, $lv, $li);
 
 $mc->router();
-if ($li->sessionIsSet()) {
-echo " User id in session:  " . $_SESSION["user_id"] . ".<br>";
-}
+
 $v->render($lv, $dtv);

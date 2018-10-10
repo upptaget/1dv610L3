@@ -21,29 +21,23 @@ class MainController {
   public function router() {
 
     /**
-     * User stays logged in with session
+     * Attempts logging in with session, otherwise cookies, otherwise from form data.
      */
     if($this->userLogin->sessionIsSet()) {
       $this->layoutView->setLoginStatus($this->userLogin->sessionIsSet());
-      return;
-    }
-
-    /**
-     * If user does a login attempt either manually or by cookies. Directs to login controller.
-     *
-     */
-    if ($this->loginView->tryLogin()) {
+    } else if ($this->loginView->cookieIsSet()) {
+      $this->loginController->loginAttemptWithCookies();
+    } else if ($this->loginView->tryLogin()) {
       $this->loginController->loginAttempt();
     }
-    if ($this->loginView->cookieIsSet()) {
-      $this->loginController->loginAttemptWithCookies();
-    }
+
 
     /**
      * If user wants to log out    // Inte bra alls. Borde kanske göras i vy?
      */
     if ($this->loginView->logout()) {
-      $this->layoutView->setLoginStatus(false);
+      $this->userLogin->destroySession();
+      $this->layoutView->setLoginStatus($this->userLogin->sessionIsSet());
       $this->loginView->removeCookies();
       $this->loginView->setLoginMessage();
     }

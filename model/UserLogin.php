@@ -12,7 +12,7 @@ class UserLogIn {
   }
 
   /**
-   * Checks database if credentials matches.
+   * Checks database if credentials matches. If it does, session is set with id of user.
    */
   public function login($username, $password) {
 		$connection = $this->database->connectToDatabase();
@@ -35,6 +35,11 @@ class UserLogIn {
 
   private function setSession($id) {
     $_SESSION['user_id'] = $id;
+  }
+
+  public function destroySession() {
+    unset($_SESSION['user_id']);
+    session_destroy();
   }
 
   public function sessionIsSet() {
