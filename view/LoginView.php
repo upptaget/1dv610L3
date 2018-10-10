@@ -27,10 +27,8 @@ class LoginView {
 
 		if($isLoggedIn) {
 
-				// Set cookies if keep login checkbox is checked.
 			if($this->keepLoggedIn()) {
-				\setcookie(self::$cookieName, $this->getRequestUserName(), time() + (86400 * 30));
-				\setcookie(self::$cookiePassword, $this->getRequestPassword(), time() + (86400 * 30));
+				$this->setCookies();
 			}
 
 			$response .= $this->generateLogoutButtonHTML();
@@ -114,7 +112,7 @@ class LoginView {
 	}
 
 	public function tryLogin() : bool {
-			return isset($_POST[self::$login]);
+		return isset($_POST[self::$login]);
 	}
 
 	public function logout() : bool {
@@ -125,8 +123,26 @@ class LoginView {
 		return isset($_POST[self::$keep]);
 	}
 
+	public function setLoginMessage() {
+		if ($this->cookieIsSet()) {
+			$this->message = 'Welcome back with cookies!';
+		}
+		else {
+			$this->message = 'Welcome!';
+		}
+		if ($this->logout()) {
+			$this->message = 'Bye bye!';
+		}
+	}
+
 	public function cookieIsSet() {
 		return isset($_COOKIE[self::$cookieName]) && isset($_COOKIE[self::$cookiePassword]);
+	}
+
+	public function setCookies() {
+		\setcookie(self::$cookieName, $this->getRequestUserName(), time() + (86400 * 30));
+		\setcookie(self::$cookiePassword, $this->getRequestPassword(), time() + (86400 * 30));
+
 	}
 
 	public function removeCookies() {

@@ -14,7 +14,7 @@ class UserLogIn {
   /**
    * Checks database if credentials matches.
    */
-  public function Login($username, $password) {
+  public function login($username, $password) {
 		$connection = $this->database->connectToDatabase();
 		$selection = $connection->prepare('SELECT id,name,password FROM users WHERE name = :name');
 		$selection->bindParam(':name', $username);
@@ -23,10 +23,21 @@ class UserLogIn {
 
 		if($match && password_verify($password, $match['password'])) {
 
-			return true;
+      $this->setSession($match['id']);
+
+      return true;
 
 		} else {
+
       throw new \Exception('Wrong name or password');
 		}
+  }
+
+  private function setSession($id) {
+    $_SESSION['user_id'] = $id;
+  }
+
+  public function sessionIsSet() {
+    return isset($_SESSION['user_id']);
   }
 }

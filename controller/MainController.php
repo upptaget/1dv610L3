@@ -6,11 +6,13 @@ class MainController {
   private $loginView;
   private $layoutView;
   private $loginController;
+  private $userLogin;
 
-  public function __construct (RegisterController $rc, LoginController $lc, \LoginSystemView\LayoutView $v, \LoginSystemView\LoginView $lv) {
+  public function __construct (RegisterController $rc, LoginController $lc, \LoginSystemView\LayoutView $v, \LoginSystemView\LoginView $lv, \LoginSystemModel\UserLogIn $li) {
     $this->loginView = $lv;
     $this->layoutView = $v;
     $this->loginController = $lc;
+    $this->userLogin = $li;
   }
 
   /**
@@ -19,24 +21,31 @@ class MainController {
   public function router() {
 
     /**
-     * If user does a login attempt, with or without keep login box checked. Directs to login
-     * controller.
-     *
+     * User stays logged in with session
      */
-    if ($this->loginView->tryLogin()) {
-      $this->loginController->LoginAttempt();
-    }
-    if ($this->loginView->cookieIsSet()) {
-      $this->loginController->LoginAttemptWithCookies();
+    if($this->userLogin->sessionIsSet()) {
+      $this->layoutView->setLoginStatus($this->userLogin->sessionIsSet());
+      return;
     }
 
     /**
-     * If user wants to log out
+     * If user does a login attempt either manually or by cookies. Directs to login controller.
+     *
+     */
+    if ($this->loginView->tryLogin()) {
+      $this->loginController->loginAttempt();
+    }
+    if ($this->loginView->cookieIsSet()) {
+      $this->loginController->loginAttemptWithCookies();
+    }
+
+    /**
+     * If user wants to log out    // Inte bra alls. Borde kanske göras i vy?
      */
     if ($this->loginView->logout()) {
       $this->layoutView->setLoginStatus(false);
       $this->loginView->removeCookies();
-      $this->loginView->setMessage('Bye bye!'); // This is not good.. use enum for messages?
+      $this->loginView->setLoginMessage();
     }
 
     /**

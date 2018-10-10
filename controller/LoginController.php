@@ -16,13 +16,13 @@ class LoginController {
   /**
    * Does a login attempt and catches exception to pass as message to view if failed.
    */
-  public function LoginAttempt()
+  public function loginAttempt()
   {
     try {
 
-      $loginAttempt = $this->userLogin->Login($this->loginView->getRequestUsername(),$this->loginView->getRequestPassword());
+      $loginAttempt = $this->userLogin->login($this->loginView->getRequestUsername(),$this->loginView->getRequestPassword());
       $this->layoutView->setLoginStatus($loginAttempt);
-      $this->loginView->setMessage('Welcome!');
+      $this->loginView->setLoginMessage();
 
     } catch (\Exception $e) {
 
@@ -30,13 +30,16 @@ class LoginController {
     }
   }
 
-  public function LoginAttemptWithCookies()
+  /**
+   * Does a login attempt with cookies.
+   */
+  public function loginAttemptWithCookies()
   {
     try {
 
-      $loginAttempt = $this->userLogin->Login($this->loginView->getCookieUsername(),$this->loginView->getCookiePassword());
+      $loginAttempt = $this->userLogin->login($this->loginView->getCookieUsername(),$this->loginView->getCookiePassword());
       $this->layoutView->setLoginStatus($loginAttempt);
-      $this->loginView->setMessage('Welcome back with cookies!');
+      $this->loginView->setLoginMessage();
 
     } catch (\Exception $e) {
 
