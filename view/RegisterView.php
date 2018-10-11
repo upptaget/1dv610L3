@@ -38,7 +38,11 @@ private function generateRegisterFormHTML($message) {
 				</fieldset>
 			</form>
 		';
-	}
+  }
+
+  public function registration() {
+    return isset($_POST[self::$register]);
+  }
 
 	private function displayUsername() {
 		if(isset($_POST[self::$name])) {
@@ -51,23 +55,23 @@ private function generateRegisterFormHTML($message) {
 
   public function getRegisterUserName() {
 		if(empty($_POST[self::$name]) || strlen($_POST[self::$name]) < 3) { //Magic number
-			throw new Exception('Username has too few characters, at least 3 characters.');
+			throw new \Exception('Username has too few characters, at least 3 characters.');
 		}
 		if (preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $_POST[self::$name])) {
-			throw new Exception('Username contains invalid characters.');
+			throw new \Exception('Username contains invalid characters.');
 		}
 		return $_POST[self::$name];
 }
 	public function getRegisterPassword() {
 		if (empty($_POST[self::$password]) || strlen($_POST[self::$password]) < 6) { // Magic number
-			throw new Exception('Password has too few characters, at least 6 characters.');
+			throw new \Exception('Password has too few characters, at least 6 characters.');
 		}
 		return $_POST[self::$password];
 	}
 
 	public function checkRegistrationPasswordsMatch() {
 		if ($_POST[self::$password] != $_POST[self::$passwordRepeat]) {
-			throw new Exception('Passwords do not match.');
+			throw new \Exception('Passwords do not match.');
 		}
 	}
 

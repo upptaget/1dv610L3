@@ -14,21 +14,21 @@ class UserRegister {
     $selection = $connection->prepare('SELECT id,name,password FROM users WHERE name = :name');
 		$selection->bindParam(':name', $username);
 		$selection->execute();
-    $match = $selection->fetch(PDO::FETCH_ASSOC);
+    $match = $selection->fetch(\PDO::FETCH_ASSOC);
 
     if(!$match) {
     $sql = "INSERT INTO users (name, password) VALUES (:name, :password)";
     $addUser = $connection->prepare($sql);
     $addUser->bindParam(':name', $username);
     $addUser->bindParam(':password', $hashedPassword);
+
     try {
     $addUser->execute();
-    echo 'Jamen de gick ju bra';
     return true;
-    }
-    catch(PDOException $e) {
-      echo $e->getMessage();
-    }
+
+    } catch(PDOException $e) {
+       echo $e->getMessage();
+      }
     } else {
       throw new Exception('User exists, pick another username.');
     }

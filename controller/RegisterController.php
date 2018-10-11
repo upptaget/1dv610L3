@@ -15,17 +15,17 @@ class RegisterController {
     try{
 
 
-      if($this->registerView->checkPasswordsMatching()); {
-        
+      if($this->registerView->checkRegistrationPasswordsMatch()); {
+
 
         try {
           $this->userRegister->registerUser($this->registerView->getRegisterUsername(), $this->registerView->getRegisterPassword());
 
-        } catch (Exception $e){
+        } catch (\Exception $e){
           $this->registerView->setMessage($e->getMessage());
         }
        }
-    } catch(Exception $e) {
+    } catch(\Exception $e) {
       $this->registerView->setMessage($e->getMessage());
     }
   }

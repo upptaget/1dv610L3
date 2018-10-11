@@ -65,8 +65,8 @@ class MainController {
      * TODO:
      * User sent register post.
      */
-    if(1 == 1) {
-      echo 'Lyssna på post på register';
+    if($this->registerView->registration()) {
+      $this->registerController->userRegister();
     }
   }
 }
