@@ -2,8 +2,10 @@
 
 //INCLUDE THE FILES NEEDED...
 require_once('model/UserLogin.php');
+require_once('model/UserRegister.php');
 require_once('model/Database.php');
 require_once('view/LoginView.php');
+require_once('view/RegisterView.php');
 require_once('view/DateTimeView.php');
 require_once('view/LayoutView.php');
 require_once('controller/LoginController.php');
@@ -18,13 +20,15 @@ session_start();
 //CREATE OBJECTS OF THE VIEWS
 $db = new \LoginSystemModel\Database();
 $li = new \LoginSystemModel\UserLogin($db);
+$ur = new \LoginSystemModel\UserRegister($db);
 $lv = new \LoginSystemView\LoginView();
+$rv = new \LoginSystemView\RegisterView();
 $dtv = new \LoginSystemView\DateTimeView();
 $v = new \LoginSystemView\LayoutView();
 $lc = new \LoginSystemController\LoginController($li, $lv, $v);
-$rc = new \LoginSystemController\RegisterController();
-$mc = new \LoginSystemController\MainController($rc, $lc, $v, $lv, $li);
+$rc = new \LoginSystemController\RegisterController($ur, $rv);
+$mc = new \LoginSystemController\MainController($rc, $lc, $v, $lv, $li, $rv);
 
 $mc->router();
 
-$v->render($lv, $dtv);
+$v->render($lv, $rv, $dtv);

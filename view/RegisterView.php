@@ -1,5 +1,7 @@
 <?php
 
+namespace LoginSystemView;
+
 class RegisterView {
 
   private static $name = 'RegisterView::UserName';

@@ -5,19 +5,26 @@ class MainController {
 
   private $loginView;
   private $layoutView;
+  private $registerView;
   private $loginController;
+  private $registerController;
   private $userLogin;
 
-  public function __construct (RegisterController $rc,
+  public function __construct (
+    RegisterController $rc,
     LoginController $lc,
     \LoginSystemView\LayoutView $v,
     \LoginSystemView\LoginView $lv,
-    \LoginSystemModel\UserLogIn $li) {
+    \LoginSystemModel\UserLogIn $li,
+    \LoginSystemView\RegisterView $rv
+    ){
 
     $this->loginView = $lv;
     $this->layoutView = $v;
     $this->loginController = $lc;
     $this->userLogin = $li;
+    $this->registerController = $rc;
+    $this->registerView = $rv; // ANVÄNDS EJ
   }
 
   /**
@@ -48,11 +55,18 @@ class MainController {
     }
 
     /**
-     * TODO:
      * User has pressed register link and will be shown the register view.
      */
     if ($this->layoutView->toRegister()) {
-      echo 'User wants to register';
+      $this->layoutView->showRegisterForm($this->layoutView->toRegister());
+    }
+
+    /**
+     * TODO:
+     * User sent register post.
+     */
+    if(1 == 1) {
+      echo 'Lyssna på post på register';
     }
   }
 }

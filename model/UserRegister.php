@@ -1,4 +1,7 @@
 <?php
+
+namespace LoginSystemModel;
+
 require_once('Database.php');
 
 class UserRegister {
@@ -20,6 +23,7 @@ class UserRegister {
     $addUser->bindParam(':password', $hashedPassword);
     try {
     $addUser->execute();
+    echo 'Jamen de gick ju bra';
     return true;
     }
     catch(PDOException $e) {
