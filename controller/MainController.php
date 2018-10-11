@@ -8,7 +8,12 @@ class MainController {
   private $loginController;
   private $userLogin;
 
-  public function __construct (RegisterController $rc, LoginController $lc, \LoginSystemView\LayoutView $v, \LoginSystemView\LoginView $lv, \LoginSystemModel\UserLogIn $li) {
+  public function __construct (RegisterController $rc,
+    LoginController $lc,
+    \LoginSystemView\LayoutView $v,
+    \LoginSystemView\LoginView $lv,
+    \LoginSystemModel\UserLogIn $li) {
+
     $this->loginView = $lv;
     $this->layoutView = $v;
     $this->loginController = $lc;

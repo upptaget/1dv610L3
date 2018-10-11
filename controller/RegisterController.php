@@ -2,8 +2,12 @@
 namespace LoginSystemController;
 
 class RegisterController {
-  
-  public function __construct () {
-    // echo ' RegisterController';
+
+  private $registerView;
+  private $userRegister;
+
+  public function __construct (\LoginSystemModel\UserRegister $ur, \LoginSystemView\RegisterView $rv) {
+    $this->$userRegister = $ur;
+    $this->registerView = $rv;
   }
 }
