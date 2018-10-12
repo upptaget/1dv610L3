@@ -1,6 +1,8 @@
 <?php
 namespace LoginSystemController;
 
+require_once('view\Messages.php');
+
 class MainController {
 
   private $loginView;
@@ -51,7 +53,7 @@ class MainController {
       $this->userLogin->destroySession();
       $this->layoutView->setLoginStatus($this->userLogin->sessionIsSet());
       $this->loginView->removeCookies();
-      $this->loginView->setLoginMessage();
+      $this->loginView->setLoginMessage(\LoginSystemView\Messages::LOGOUT_MESSAGE);
     }
 
     /**
@@ -68,7 +70,7 @@ class MainController {
     if($this->registerView->registration()) {
       if($this->registerController->userRegister())
       {
-      $this->loginView->setMessage('Registered new user.');
+      $this->loginView->setMessage(\LoginSystemView\Messages::NEW_USER_REG);
       $this->layoutView->showRegisterForm(false);
       }
     }

@@ -2,6 +2,8 @@
 
 namespace LoginSystemModel;
 
+require_once('customExceptions.php');
+
 class UserLogIn {
 
   //Database connection
@@ -29,7 +31,7 @@ class UserLogIn {
 
 		} else {
 
-      throw new \Exception('Wrong name or password');
+      throw new \ValidationException('Credentials does not match');
 		}
   }
 

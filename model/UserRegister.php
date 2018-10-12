@@ -1,13 +1,13 @@
 <?php
 
 namespace LoginSystemModel;
-
+require_once('customExceptions.php');
 require_once('Database.php');
 
 
 class UserRegister {
 
-  public function registerUser($username, $password) {
+  public function registerUser($password, $username) {
     $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
     $db = new Database();
     $connection = $db->connectToDatabase();
@@ -31,7 +31,7 @@ class UserRegister {
        echo $e->getMessage();
       }
     } else {
-      throw new \Exception('User exists, pick another username.');
+      throw new \ExistingUsernameException();
     }
   }
 }

@@ -1,5 +1,9 @@
 <?php
+
+
 namespace LoginSystemController;
+
+require_once('view\Messages.php');
 
 class LoginController {
 
@@ -22,11 +26,11 @@ class LoginController {
       $this->loginView->setDisplayUserName($this->loginView->getRequestUsername());
       $loginAttempt = $this->userLogin->login($this->loginView->getRequestUsername(),$this->loginView->getRequestPassword());
       $this->layoutView->setLoginStatus($loginAttempt);
-      $this->loginView->setLoginMessage();
+      $this->loginView->setLoginMessage(\LoginSystemView\Messages::WELCOME_ON_LOGIN);
 
     } catch (\Exception $e) {
 
-      $this->loginView->setMessage($e->getMessage());
+      $this->loginView->setMessage(\LoginSystemView\Messages::FAILED_LOGIN);
     }
   }
 
@@ -39,11 +43,11 @@ class LoginController {
 
       $loginAttempt = $this->userLogin->login($this->loginView->getCookieUsername(),$this->loginView->getCookiePassword());
       $this->layoutView->setLoginStatus($loginAttempt);
-      $this->loginView->setLoginMessage();
+      $this->loginView->setLoginMessage(\LoginSystemView\Messages::WELCOME_ON_COOKIE_LOGIN);
 
     } catch (\Exception $e) {
 
-      $this->loginView->setMessage($e->getMessage());
+      $this->loginView->setMessage(\LoginSystemView\Messages::FAILED_LOGIN_WITH_COOKIE);
     }
   }
 }
