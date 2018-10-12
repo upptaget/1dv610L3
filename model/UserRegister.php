@@ -4,6 +4,7 @@ namespace LoginSystemModel;
 
 require_once('Database.php');
 
+
 class UserRegister {
 
   public function registerUser($username, $password) {
@@ -26,11 +27,11 @@ class UserRegister {
     $addUser->execute();
     return true;
 
-    } catch(PDOException $e) {
+    } catch(\PDOException $e) {
        echo $e->getMessage();
       }
     } else {
-      throw new Exception('User exists, pick another username.');
+      throw new \Exception('User exists, pick another username.');
     }
   }
 }

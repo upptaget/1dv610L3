@@ -26,7 +26,7 @@ $rv = new \LoginSystemView\RegisterView();
 $dtv = new \LoginSystemView\DateTimeView();
 $v = new \LoginSystemView\LayoutView();
 $lc = new \LoginSystemController\LoginController($li, $lv, $v);
-$rc = new \LoginSystemController\RegisterController($ur, $rv);
+$rc = new \LoginSystemController\RegisterController($ur, $rv, $lv);
 $mc = new \LoginSystemController\MainController($rc, $lc, $v, $lv, $li, $rv);
 
 $mc->router();

@@ -24,7 +24,7 @@ class MainController {
     $this->loginController = $lc;
     $this->userLogin = $li;
     $this->registerController = $rc;
-    $this->registerView = $rv; // ANVÄNDS EJ
+    $this->registerView = $rv;
   }
 
   /**
@@ -67,6 +67,7 @@ class MainController {
      */
     if($this->registerView->registration()) {
       $this->registerController->userRegister();
+      $this->layoutView->showRegisterForm(false);
     }
   }
 }
