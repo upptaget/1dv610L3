@@ -126,16 +126,17 @@ class LoginView {
 		$this->username = $username;
 	}
 
-	public function setLoginMessage() {
+	public function setLoginMessage($isLoggedIn) {
 		if ($this->cookieIsSet()) {
-			$this->message = 'Welcome back with cookies!';
-		}
-		else {
-			$this->message = 'Welcome!';
+			$this->message = 'Welcome back with cookie';
 		}
 		if ($this->logout()) {
 			$this->message = 'Bye bye!';
 		}
+		else {
+			$this->message = 'Welcome';
+		}
+
 	}
 
 	public function cookieIsSet() {

@@ -66,8 +66,11 @@ class MainController {
      * User sent register post.
      */
     if($this->registerView->registration()) {
-      $this->registerController->userRegister();
+      if($this->registerController->userRegister())
+      {
+      $this->loginView->setMessage('Registered new user.');
       $this->layoutView->showRegisterForm(false);
+      }
     }
   }
 }

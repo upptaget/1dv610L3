@@ -19,7 +19,7 @@ class LoginController {
   public function loginAttempt()
   {
     try {
-
+      $this->loginView->setDisplayUserName($this->loginView->getRequestUsername());
       $loginAttempt = $this->userLogin->login($this->loginView->getRequestUsername(),$this->loginView->getRequestPassword());
       $this->layoutView->setLoginStatus($loginAttempt);
       $this->loginView->setLoginMessage();
