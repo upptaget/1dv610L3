@@ -3,7 +3,7 @@
 
 namespace LoginSystemController;
 
-require_once('view\Messages.php');
+require_once('view/Messages.php');
 
 class LoginController {
 
@@ -14,7 +14,6 @@ class LoginController {
     $this->userLogin = $li;
     $this->loginView = $lv;
     $this->layoutView = $v;
-
   }
 
   /**
@@ -28,9 +27,13 @@ class LoginController {
       $this->layoutView->setLoginStatus($loginAttempt);
       $this->loginView->setLoginMessage(\LoginSystemView\Messages::WELCOME_ON_LOGIN);
 
-    } catch (\Exception $e) {
+    }  catch (\LoginSystemModel\ValidationException $e) {
 
       $this->loginView->setMessage(\LoginSystemView\Messages::FAILED_LOGIN);
+
+    } catch (\Exception $e) {
+
+      $this->loginView->setMessage($e->getMessage());
     }
   }
 

@@ -7,7 +7,7 @@ require_once('Database.php');
 
 class UserRegister {
 
-  public function registerUser($password, $username) {
+  public function registerUser($username, $password) {
     $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
     $db = new Database();
     $connection = $db->connectToDatabase();
@@ -31,7 +31,7 @@ class UserRegister {
        echo $e->getMessage();
       }
     } else {
-      throw new \ExistingUsernameException();
+      throw new ExistingUsernameException();
     }
   }
 }

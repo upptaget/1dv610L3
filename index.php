@@ -1,6 +1,6 @@
 <?php
 
-//INCLUDE THE FILES NEEDED...
+// INCLUDE THE FILES NEEDED...
 require_once('model/UserLogin.php');
 require_once('model/UserRegister.php');
 require_once('model/Database.php');
@@ -12,9 +12,9 @@ require_once('controller/LoginController.php');
 require_once('controller/RegisterController.php');
 require_once('controller/MainController.php');
 
-//MAKE SURE ERRORS ARE SHOWN... MIGHT WANT TO TURN THIS OFF ON A PUBLIC SERVER
+// MAKE SURE ERRORS ARE SHOWN... MIGHT WANT TO TURN THIS OFF ON A PUBLIC SERVER
 error_reporting(E_ALL);
-ini_set('display_errors', 'On');
+ini_set('display_errors', 'ON');
 session_start();
 
 //CREATE OBJECTS OF THE VIEWS

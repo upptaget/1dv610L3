@@ -31,7 +31,7 @@ class UserLogIn {
 
 		} else {
 
-      throw new \ValidationException('Credentials does not match');
+      throw new ValidationException('Credentials does not match');
 		}
   }
 

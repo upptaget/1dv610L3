@@ -1,7 +1,7 @@
 <?php
 namespace LoginSystemController;
 
-require_once('view\Messages.php');
+require_once('view/Messages.php');
 
 class MainController {
 
@@ -50,10 +50,12 @@ class MainController {
      * If user wants to log out    // Inte bra alls. Borde kanske göras i vy?
      */
     if ($this->loginView->logout()) {
+      if($this->userLogin->sessionIsSet()) {
       $this->userLogin->destroySession();
       $this->layoutView->setLoginStatus($this->userLogin->sessionIsSet());
       $this->loginView->removeCookies();
       $this->loginView->setLoginMessage(\LoginSystemView\Messages::LOGOUT_MESSAGE);
+      }
     }
 
     /**
