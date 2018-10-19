@@ -7,7 +7,8 @@ class LayoutView {
   private $isLoggedIn;
   private $wantToRegister;
 
-  public function render(LoginView $lv, RegisterView $rv, DateTimeView $dtv) {
+  public function render(LoginView $lv, RegisterView $rv, DateTimeView $dtv, $show) {
+    if(!$show) {
     echo '<!DOCTYPE html>
       <html>
         <head>
@@ -27,6 +28,9 @@ class LayoutView {
          </body>
       </html>
     ';
+    } else {
+      echo '';
+    }
   }
   private function displayLink() {
     if (!$this->isLoggedIn && !$this->wantToRegister) {

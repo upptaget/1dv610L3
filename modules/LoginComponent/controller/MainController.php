@@ -1,7 +1,7 @@
 <?php
 namespace LoginSystemController;
 
-require_once('view/Messages.php');
+require_once('modules/LoginComponent/view/Messages.php');
 
 class MainController {
 
