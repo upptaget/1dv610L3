@@ -21,7 +21,7 @@ ini_set('display_errors', 'ON');
 class Login {
 
 
-public function Login($toPosts) {
+public function Login() {
 $db = new \LoginSystemModel\Database();
 $li = new \LoginSystemModel\UserLogin($db);
 $ur = new \LoginSystemModel\UserRegister($db);
@@ -33,7 +33,7 @@ $lc = new \LoginSystemController\LoginController($li, $lv, $v);
 $rc = new \LoginSystemController\RegisterController($ur, $rv, $lv);
 $mc = new \LoginSystemController\MainController($rc, $lc, $v, $lv, $li, $rv);
 $mc->router();
-$v->render($lv, $rv, $dtv, $toPosts);
+return $v->render($lv, $rv, $dtv);
 
 }
 

@@ -3,6 +3,8 @@
 
 
 require_once('modules/LoginComponent/Login.php');
+require_once('modules/LoginComponent/view/LayoutView.php');
+require_once('app/view/LayoutView.php');
 require_once('app/controller/MainController.php');
 require_once('app/view/PostItView.php');
 
@@ -13,7 +15,12 @@ session_start();
 
 $login = new \LoginSystem\Login();
 $pView = new \view\PostItView();
+$logv = new \LoginSystemView\LayoutView();
+$lv = new \view\LayoutView($pView, $logv);
 $pController = new \controller\MainController($pView);
-$toPosts = isset($_SESSION['postApp']);
-$login->Login($toPosts);
-$pController->router();
+
+
+
+$showLogin = $login->Login();
+
+$lv->render($showLogin);

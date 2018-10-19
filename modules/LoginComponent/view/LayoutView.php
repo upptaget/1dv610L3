@@ -6,10 +6,11 @@ class LayoutView {
 
   private $isLoggedIn;
   private $wantToRegister;
+  private static $toPost = 'toPosts';
 
-  public function render(LoginView $lv, RegisterView $rv, DateTimeView $dtv, $show) {
-    if(!$show) {
-    echo '<!DOCTYPE html>
+  public function render(LoginView $lv, RegisterView $rv, DateTimeView $dtv) {
+    if(!isset($_POST[self::$toPost])) {
+    return '<!DOCTYPE html>
       <html>
         <head>
           <meta charset="utf-8">
@@ -22,6 +23,7 @@ class LayoutView {
 
           <div class="container">
               ' . $this->showLoginOrRegister($lv, $rv) . '
+              ' . $this->generatePostItButton() . '
 
               ' . $dtv->show() . '
           </div>
@@ -29,7 +31,7 @@ class LayoutView {
       </html>
     ';
     } else {
-      echo '';
+      return ' ' . $lv->generateLogoutButtonHTML() . ' ';
     }
   }
   private function displayLink() {
@@ -58,10 +60,20 @@ class LayoutView {
 
   private function renderIsLoggedIn() {
     if ($this->isLoggedIn) {
-      return '<h2>Logged in</h2>';
+      return '<h2>Logged in</h2>
+      ';
     }
     else {
       return '<h2>Not logged in</h2>';
+    }
+  }
+
+  private function generatePostItButton() {
+    if ($this->isLoggedIn) {
+      return 	'<form  method="post" >
+      <input type="submit" name="toPosts" value="Posts"/>
+    </form>
+    ';
     }
   }
 
