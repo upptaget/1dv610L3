@@ -30,7 +30,7 @@ class LayoutView {
          </body>
       </html>
     ';
-    } else {
+    } else if (isset($_POST[self::$toPost]) && $this->isLoggedIn) {
       return ' ' . $lv->generateLogoutButtonHTML() . ' ';
     }
   }

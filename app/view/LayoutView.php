@@ -6,6 +6,8 @@ class LayoutView {
   private $postItView;
   private $postForm;
   private $toPosts = 'toPosts';
+  private $username;
+  private $userId;
 
   public function __construct ($tpb, $pf) {
     $this->toPostButton = $tpb;
@@ -27,5 +29,13 @@ class LayoutView {
 
   public function showPostIt() {
     return isset($_POST[$this->toPosts]);
+  }
+
+  public function setUsername($username) {
+    $this->username = $username;
+  }
+
+  public function getUsername() {
+    return $this->username;
   }
 }

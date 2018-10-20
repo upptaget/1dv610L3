@@ -8,6 +8,7 @@ require_once('app/view/LayoutView.php');
 require_once('app/controller/MainController.php');
 require_once('app/view/toPostsButton.php');
 require_once('app/view/PostForm.php');
+require_once('app/model/Session.php');
 
 
 error_reporting(E_ALL);
@@ -17,12 +18,16 @@ session_start();
 $login = new \LoginSystem\Login();
 $pButton = new \view\ToPostsButton();
 $pf = new \view\PostForm();
+$s = new \model\Session();
 $lv = new \view\LayoutView($pButton, $pf);
-$pController = new \controller\MainController($pf);
+$c = new \controller\MainController($pf, $s);
 
 
 
-$showLogin = $login->Login();
-// $pController->router();
+$loginModuleOutputHTML = $login->Login();
 
-$lv->render($showLogin);
+$s->getSession();
+
+// $c->router();
+
+$lv->render($loginModuleOutputHTML);

@@ -25,7 +25,7 @@ class UserLogIn {
 
 		if($match && password_verify($password, $match['password'])) {
 
-      $this->setSession($match['id']);
+      $this->setSession($match['id'], $match['name']);
 
       return true;
 
@@ -35,8 +35,9 @@ class UserLogIn {
 		}
   }
 
-  private function setSession($id) {
+  private function setSession($id, $username) {
     $_SESSION['user_id'] = $id;
+    $_SESSION['username'] = $username;
   }
 
   public function destroySession() {

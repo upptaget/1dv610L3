@@ -5,9 +5,11 @@ namespace controller;
 class MainController {
 
   private $postItView;
+  private $session;
 
-  public function __construct (\view\PostForm $pf) {
+  public function __construct (\view\PostForm $pf, \model\Session $s) {
     $this->postItView = $pf;
+    $this->session = $s;
   }
   public function router() {
 
