@@ -15,11 +15,6 @@ class Database {
       $pass = "test";
       $database = "auth";
 
-
-
-
-
-      // TODO: Fix the catch!
       try {
 			 return $connection = new \PDO("mysql:host=$server;dbname=$database;", $user, $pass);
 		  }

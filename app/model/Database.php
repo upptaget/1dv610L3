@@ -1,0 +1,25 @@
+<?php
+
+namespace model;
+
+class Database {
+
+/**
+ * Connects to SQL db on localhost.
+ *
+ */
+public function connectToDatabase () {
+
+  $server = "localhost";
+  $user = "test";
+  $pass = "test";
+  $database = "posts";
+
+  try {
+   return $connection = new \PDO("mysql:host=$server;dbname=$database;", $user, $pass);
+  }
+  catch(\PDOException $e) {
+    echo $e->getMessage();
+  }
+}
+}

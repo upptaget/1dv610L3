@@ -8,7 +8,7 @@ class Session {
 
 
   public function getUsername() {
-    return $this->$username;
+    return $this->username;
   }
 
   public function getUserId() {
@@ -20,5 +20,9 @@ class Session {
     $this->username = $_SESSION['username'];
     $this->id = $_SESSION['user_id'];
     }
+  }
+
+  public function gotSession() {
+    return isset($this->username) && isset($this->id);
   }
 }

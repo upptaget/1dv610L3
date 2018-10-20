@@ -4,17 +4,21 @@ namespace controller;
 
 class MainController {
 
-  private $postItView;
   private $session;
+  private $userInfo;
 
-  public function __construct (\view\PostForm $pf, \model\Session $s) {
-    $this->postItView = $pf;
+  public function __construct (\model\Session $s, \view\UserInfo $ui) {
     $this->session = $s;
+    $this->userInfo = $ui;
   }
   public function router() {
 
-    if ($this->postItView->toNewPost()) {
-      $this->postItView->setShowPostForm();
+    $this->session->getSession();
+
+    if ($this->session->gotSession()) {
+      $this->userInfo->setUsername($this->session->getUsername());
+      $this->userInfo->setUserId($this->session->getUserId());
+     echo $this->userInfo->getUserId();
     }
 
   }

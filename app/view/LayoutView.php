@@ -5,13 +5,13 @@ namespace view;
 class LayoutView {
   private $postItView;
   private $postForm;
+  private $userInfo;
   private $toPosts = 'toPosts';
-  private $username;
-  private $userId;
 
-  public function __construct ($tpb, $pf) {
+  public function __construct ($tpb, $pf, $ui) {
     $this->toPostButton = $tpb;
     $this->postForm = $pf;
+    $this->userInfo = $ui;
   }
 
   public function render($showLogin) {
@@ -29,13 +29,5 @@ class LayoutView {
 
   public function showPostIt() {
     return isset($_POST[$this->toPosts]);
-  }
-
-  public function setUsername($username) {
-    $this->username = $username;
-  }
-
-  public function getUsername() {
-    return $this->username;
   }
 }
