@@ -3,6 +3,7 @@
 namespace view;
 
 class PostForm {
+  const NEW_POST_BUTTON = 'new_post_button';
 
   public function render($show) {
     $ret = '
@@ -18,7 +19,7 @@ class PostForm {
       <label for="Message">Note:</label>
       <textarea id="message" name="message" value="" placeholder="Your note.."></textarea>
 
-      <input type="submit" name="postButton" value="Post-It!" />
+      <input type="submit" name="' . self::NEW_POST_BUTTON .'" value="Post-It!" />
     </fieldset>
   </form>
 
@@ -29,4 +30,7 @@ class PostForm {
     }
   }
 
+  public function newPost() {
+    return isset($_POST[self::NEW_POST_BUTTON]);
+  }
 }

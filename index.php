@@ -11,6 +11,7 @@ require_once('app/view/PostForm.php');
 require_once('app/view/UserInfo.php');
 require_once('app/model/Database.php');
 require_once('app/model/Session.php');
+require_once('app/model/AddPost.php');
 
 
 error_reporting(E_ALL);
@@ -18,13 +19,14 @@ ini_set('display_errors', 'ON');
 session_start();
 
 $login = new \LoginSystem\Login();
-$pButton = new \view\ToPostsButton();
+$tpb = new \view\ToPostsButton();
 $pf = new \view\PostForm();
 $ui = new \view\UserInfo();
 $db = new \model\Database();
 $s = new \model\Session();
-$lv = new \view\LayoutView($pButton, $pf, $ui);
-$c = new \controller\MainController($s, $ui);
+$ap = new \model\AddPost();
+$lv = new \view\LayoutView($tpb, $pf, $ui);
+$c = new \controller\MainController($s, $ap, $ui, $pf);
 
 
 

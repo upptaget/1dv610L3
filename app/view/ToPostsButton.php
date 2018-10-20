@@ -3,7 +3,7 @@
 namespace view;
 
 class ToPostsButton {
-  const TO_POST_BUTTON = 'new_post_button';
+  const TO_POSTS_BUTTON = 'new_post_button';
 
   public function render () {
     $ret = '
@@ -14,11 +14,11 @@ class ToPostsButton {
 
   public function newPostButtonFormHTML() {
     return '<form method="post">
-    <button name="' . self::TO_POST_BUTTON . '" value="'. self::TO_POST_BUTTON .'" type="submit">New Post-It</button>
+    <button name="' . self::TO_POSTS_BUTTON . '" value="'. self::TO_POSTS_BUTTON .'" type="submit">New Post-It</button>
     </form>';
   }
 
   public function toNewPost() {
-    return isset($_POST[self::TO_POST_BUTTON]);
+    return isset($_POST[self::TO_POSTS_BUTTON]);
   }
 }
