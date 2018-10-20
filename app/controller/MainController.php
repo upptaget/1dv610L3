@@ -6,13 +6,13 @@ class MainController {
 
   private $postItView;
 
-  public function __construct (\view\PostItView $pv) {
-    $this->postItView = $pv;
+  public function __construct (\view\PostForm $pf) {
+    $this->postItView = $pf;
   }
   public function router() {
-    if (isset($_SESSION['user_id'])) {
 
-      return $this->postItView->render();
+    if ($this->postItView->toNewPost()) {
+      $this->postItView->setShowPostForm();
     }
 
   }

@@ -3,33 +3,29 @@
 namespace view;
 
 class LayoutView {
-  private $loginLayoutView;
   private $postItView;
-  private $test = 'Post it appen goes here';
+  private $postForm;
+  private $toPosts = 'toPosts';
 
-  public function __construct ($piv, $logv) {
-    $this->loginLayoutView = $logv;
-    $this->postItView = $logv;
+  public function __construct ($tpb, $pf) {
+    $this->toPostButton = $tpb;
+    $this->postForm = $pf;
   }
 
   public function render($showLogin) {
-    // IMPORTERA LoginView / PostItview
     echo '<!DOCTYPE html>
     <html>
       <head>
         <meta charset="utf-8">
-        <title>Login Example</title>
+        <title>Login and PostIt</title>
+        <h1>PostIt!</h1>
         ' . $showLogin . '
-        ' . $this->showPostIt() . '
+        ' . $this->postForm->render($this->showPostIt()) . '
     </html>
   ';
   }
 
   public function showPostIt() {
-    if (isset($_POST['toPosts'])) {
-      return '
-      PostItApp goes here...
-      ';
-    }
+    return isset($_POST[$this->toPosts]);
   }
 }
