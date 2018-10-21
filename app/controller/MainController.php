@@ -46,7 +46,7 @@ class MainController {
 
     }
 
-    // Adds new post, then up
+    // Adds new post
     if ($this->postForm->newPost()) {
 
       try{
