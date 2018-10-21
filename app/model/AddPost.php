@@ -18,7 +18,11 @@ class AddPost {
     $sqlstmt->bindParam(':user_id', $userId);
     $sqlstmt->bindParam('author', $author);
 
+    try {
     $sqlstmt->execute();
+    } catch (\PDOException $e) {
+      echo $e->getMessage();
+    }
 
     echo 'ADD POST';
   }

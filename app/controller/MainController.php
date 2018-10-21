@@ -31,7 +31,17 @@ class MainController {
 
     // ADDS NEW POST
     if ($this->postForm->newPost()) {
-      $this->addPost->addPostToDatabase('TITEL', 'MESSAGE', 122, 'AUTHOR');
+
+      try{
+        $this->addPost->addPostToDatabase(
+            $this->postForm->getPostTitle(),
+            $this->postForm->getPostMessage(),
+            $this->session->getUserId(),
+            $this->session->getUsername());
+
+      } catch (\Exception $e) {
+          echo $e->getMessage();
+      }
     }
 
   }
