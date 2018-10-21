@@ -25,4 +25,12 @@ class Session {
   public function gotSession() {
     return isset($this->username) && isset($this->id);
   }
+
+  public function setPostItSession($status) {
+    $_SESSION['postIt'] = $status;
+  }
+
+  public function getPostItSession() {
+    return isset($_SESSION['postIt']);
+  }
 }

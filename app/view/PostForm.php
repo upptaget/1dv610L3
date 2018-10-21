@@ -9,12 +9,14 @@ class PostForm {
   const POST_TITLE = 'post_title';
   const INFO_TO_USER = 'info_to_user';
 
+  private $message = '';
+
   public function render($show) {
     $ret = '
     <form method="post" >
     <fieldset>
       <legend>' . self::FORM_TITLE . '</legend>
-      <p id="' . self::INFO_TO_USER . '"></p>
+      <p id="' . self::INFO_TO_USER . '">' . $this->message . '</p>
 
       <label for="Title">Title:</label>
       <input type="text" id="' . self::POST_TITLE . '" name="' . self::POST_TITLE . '" value="" placeholder="Title.." />
@@ -32,6 +34,10 @@ class PostForm {
     if($show) {
     return $ret;
     }
+  }
+
+  public function setMessage($message) {
+    $this->message = $message;
   }
 
   public function getPostTitle() {

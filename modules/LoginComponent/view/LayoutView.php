@@ -23,8 +23,6 @@ class LayoutView {
 
           <div class="container">
               ' . $this->showLoginOrRegister($lv, $rv) . '
-              ' . $this->generatePostItButton() . '
-
               ' . $dtv->show() . '
           </div>
          </body>
@@ -44,7 +42,7 @@ class LayoutView {
   }
 
   public function showLoginOrRegister($lv, $rv) {
-    if($this->wantToRegister) {
+    if($this->wantToRegister && !$this->isLoggedIn) {
       return $rv->response();
     }
     return $lv->response($this->isLoggedIn);
@@ -65,15 +63,6 @@ class LayoutView {
     }
     else {
       return '<h2>Not logged in</h2>';
-    }
-  }
-
-  private function generatePostItButton() {
-    if ($this->isLoggedIn) {
-      return 	'<form  method="post" >
-      <input type="submit" name="toPosts" value="Posts"/>
-    </form>
-    ';
     }
   }
 

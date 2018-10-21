@@ -26,7 +26,7 @@ $db = new \model\Database();
 $s = new \model\Session();
 $ap = new \model\AddPost();
 $lv = new \view\LayoutView($tpb, $pf, $ui);
-$c = new \controller\MainController($s, $ap, $ui, $pf);
+$c = new \controller\MainController($s, $ap, $ui, $pf, $lv);
 
 
 

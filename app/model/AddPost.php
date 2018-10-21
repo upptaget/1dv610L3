@@ -16,15 +16,14 @@ class AddPost {
     $sqlstmt->bindParam(':title', $title);
     $sqlstmt->bindParam(':message', $message);
     $sqlstmt->bindParam(':user_id', $userId);
-    $sqlstmt->bindParam('author', $author);
+    $sqlstmt->bindParam(':author', $author);
 
     try {
     $sqlstmt->execute();
-    } catch (\PDOException $e) {
-      echo $e->getMessage();
+    } catch (\Exception $e) {
+      throw new \model\NewPostException('Could not save post to database');
     }
-
-    echo 'ADD POST';
+    return true;
   }
 
 }
