@@ -9,7 +9,7 @@ class AddPost {
     $db = new \model\Database();
     $connection = $db->connectToDatabase();
 
-    $sql = "INSERT INTO user_posts (title, message, user_id, author) VALUES (:title, :message, :user_id, :author)";
+    $sql = "INSERT INTO posts (title, message, user_id, author) VALUES (:title, :message, :user_id, :author)";
 
     $sqlstmt = $connection->prepare($sql);
 

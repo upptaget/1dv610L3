@@ -9,7 +9,7 @@ class GetPosts {
     $db = new \model\Database();
     $connection = $db->connectToDatabase();
 
-    $sql = "SELECT * FROM `user_posts` WHERE user_id = '$userId'";
+    $sql = "SELECT * FROM `posts` WHERE user_id = '$userId'";
 
     $sqlstmt = $connection->prepare($sql);
 

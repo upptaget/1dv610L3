@@ -57,10 +57,12 @@ class MainController {
             $this->session->getUserId(),
             $this->session->getUsername());
             $this->postForm->setMessageToUser('Post-It! added!'); // FIXA KLASS FÖR STATISKA STRÄNGAR
+            $this->showPosts->setPosts($this->getPosts->getUserPosts($this->userInfo->getUserId()));
 
       } catch (\Exception $e) {
         $this->postForm->setMessageToUser($e->getMessage());
       }
+
     }
 
   }

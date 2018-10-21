@@ -29,7 +29,7 @@ class ShowPosts {
             <p>Author: '. $post->author . ' </p>
             <p>Message: '. $post->message . ' </p>
             <p>Time Added: ' . $post->date . ' </p>
-            <form>
+            <form method="post">
             <button type="submit" name"delete_button" value="'.$post->id.'">Delete</button>
             <button type="submit" name="edit_button" value="'.$post->id.'">Edit</button>
             </form>

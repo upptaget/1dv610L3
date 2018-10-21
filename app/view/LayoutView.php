@@ -21,10 +21,15 @@ class LayoutView {
       <head>
         <meta charset="utf-8">
         <title>Login and PostIt</title>
+      </head>
+      <body>
         <h1>PostIt!</h1>
+        <div>
         ' . $showLogin . '
         ' . $this->postForm->render($this->hasLoggedIn) . '
         ' . $this->displayPosts() . '
+        </div>
+        </body>
     </html>
   ';
   }

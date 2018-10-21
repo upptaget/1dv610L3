@@ -10,14 +10,7 @@ class LayoutView {
 
   public function render(LoginView $lv, RegisterView $rv, DateTimeView $dtv) {
     if(!isset($_POST[self::$toPost])) {
-    return '<!DOCTYPE html>
-      <html>
-        <head>
-          <meta charset="utf-8">
-          <title>Login Example</title>
-        </head>
-        <body>
-          <h1>Assignment 2</h1>
+    return '
           ' . $this->displayLink() . '
           ' . $this->renderIsLoggedIn() . '
 
@@ -25,8 +18,6 @@ class LayoutView {
               ' . $this->showLoginOrRegister($lv, $rv) . '
               ' . $dtv->show() . '
           </div>
-         </body>
-      </html>
     ';
     } else if (isset($_POST[self::$toPost]) && $this->isLoggedIn) {
       return ' ' . $lv->generateLogoutButtonHTML() . ' ';
