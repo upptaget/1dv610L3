@@ -8,6 +8,7 @@ class LayoutView {
   private $wantToRegister;
   private static $toPost = 'toPosts';
 
+// Renders the login module
   public function render(LoginView $lv, RegisterView $rv, DateTimeView $dtv) {
     if(!isset($_POST[self::$toPost])) {
     return '

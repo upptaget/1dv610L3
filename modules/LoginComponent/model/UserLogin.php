@@ -14,7 +14,7 @@ class UserLogIn {
   }
 
   /**
-   * Checks database if credentials matches. If it does, session is set with id of user.
+   * Checks database if credentials matches. If it does, session is set with id and name of user.
    */
   public function login($username, $password) {
 		$connection = $this->database->connectToDatabase();
@@ -34,7 +34,7 @@ class UserLogIn {
       throw new ValidationException('Credentials does not match');
 		}
   }
-
+  
   private function setSession($id, $username) {
     $_SESSION['user_id'] = $id;
     $_SESSION['username'] = $username;

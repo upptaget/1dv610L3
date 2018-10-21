@@ -1,7 +1,9 @@
 <?php
 
 namespace LoginSystemView;
-
+/**
+ * Messages to user is stored here
+ */
 class Messages {
 
   const WELCOME_ON_LOGIN = 'Welcome';

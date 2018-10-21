@@ -14,9 +14,9 @@ require_once('controller/LoginController.php');
 require_once('controller/RegisterController.php');
 require_once('controller/MainController.php');
 
-// MAKE SURE ERRORS ARE SHOWN... MIGHT WANT TO TURN THIS OFF ON A PUBLIC SERVER
+// MAKE SURE ERRORS ARE SHOWN...
 error_reporting(E_ALL);
-ini_set('display_errors', 'ON');
+ini_set('display_errors', 'OFF');
 
 class Login {
 

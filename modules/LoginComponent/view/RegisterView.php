@@ -2,6 +2,9 @@
 
 namespace LoginSystemView;
 
+/**
+ * Generetaes the register view
+ */
 class RegisterView {
 
   private static $name = 'RegisterView::UserName';
@@ -18,6 +21,7 @@ class RegisterView {
 		return $response;
 	}
 
+	// Returns the HTML of the register view
 private function generateRegisterFormHTML($message) {
 		return '
 			<form method="post" >
@@ -44,6 +48,7 @@ private function generateRegisterFormHTML($message) {
     return isset($_POST[self::$register]);
   }
 
+	// Returns string written in username-field if set, stripped of tags and other unallowed characters.
 	private function displayUsername() {
 		if(isset($_POST[self::$name])) {
 			$checkedForTags = preg_replace('/(\<.*?\>)/', '', $_POST[self::$name]);
@@ -53,6 +58,7 @@ private function generateRegisterFormHTML($message) {
 		}
 	}
 
+	// Returns string written in username-field. Throws exception id it contains unallowed characters
   public function getRegisterUserName() {
 		if(empty($_POST[self::$name]) || strlen($_POST[self::$name]) < 3) { //Magic number
 			throw new \Exception('Username has too few characters, at least 3 characters.');
@@ -62,13 +68,15 @@ private function generateRegisterFormHTML($message) {
 		}
 		return $_POST[self::$name];
 }
+
 	public function getRegisterPassword() {
-		if (empty($_POST[self::$password]) || strlen($_POST[self::$password]) < 6) { // Magic number
+		if (empty($_POST[self::$password]) || strlen($_POST[self::$password]) < 6) {
 			throw new \Exception('Password has too few characters, at least 6 characters.');
 		}
 		return $_POST[self::$password];
 	}
 
+	// Does a password match-check of the passwordfields.
 	public function checkRegistrationPasswordsMatch() {
 		if ($_POST[self::$password] != $_POST[self::$passwordRepeat]) {
 			throw new \Exception('Passwords do not match.');

@@ -7,7 +7,7 @@ require_once('databaseConnectionVars.php');
 class Database {
 
     /**
-     * Connects to SQL db on localhost.
+     * Connects to SQL db.
      *
      */
     public function connectToDatabase () {

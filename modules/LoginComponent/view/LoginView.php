@@ -110,14 +110,17 @@ class LoginView {
 		return $_COOKIE[self::$cookiePassword];
 	}
 
+	//  login button is clicked
 	public function tryLogin() : bool {
 		return isset($_POST[self::$login]);
 	}
 
+	//	logout button is clicked
 	public function logout() : bool {
 		return isset($_POST[self::$logout]);
 }
 
+	// keep-login is checked
 	public function keepLoggedIn() : bool {
 		return isset($_POST[self::$keep]);
 	}

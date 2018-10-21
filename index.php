@@ -14,7 +14,7 @@ require_once('app/model/AddPost.php');
 
 
 error_reporting(E_ALL);
-ini_set('display_errors', 'ON');
+ini_set('display_errors', 'OFF');
 session_start();
 
 $login = new \LoginSystem\Login();

@@ -16,6 +16,8 @@ class RegisterController {
     $this->loginView = $lv;
   }
 
+  // Does a registration attempt, exception caught and sent as message.
+
   public function userRegister() {
 
     try{

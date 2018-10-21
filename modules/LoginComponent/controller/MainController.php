@@ -66,7 +66,7 @@ class MainController {
     }
 
     /**
-     * TODO:
+     * 
      * User sent register post.
      */
     if($this->registerView->registration()) {
