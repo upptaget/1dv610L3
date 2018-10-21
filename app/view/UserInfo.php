@@ -1,6 +1,9 @@
 <?php
 namespace view;
 
+/**
+ * Holds user information about logged in user
+ */
 class UserInfo {
 
   private $username;

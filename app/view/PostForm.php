@@ -1,7 +1,9 @@
 <?php
 
 namespace view;
-
+/**
+ * Holds the Post form for new Post-its.
+ */
 class PostForm {
   const FORM_TITLE = 'Post-It!';
   const NEW_POST_BUTTON = 'new_post_button';
@@ -9,14 +11,15 @@ class PostForm {
   const POST_TITLE = 'post_title';
   const INFO_TO_USER = 'info_to_user';
 
-  private $message = '';
+  private $messageToUser = '';
 
   public function render($show) {
     $ret = '
     <form method="post" >
+    <h2>Write new Post-It:</h2>
     <fieldset>
       <legend>' . self::FORM_TITLE . '</legend>
-      <p id="' . self::INFO_TO_USER . '">' . $this->message . '</p>
+      <p id="' . self::INFO_TO_USER . '">' . $this->messageToUser . '</p>
 
       <label for="Title">Title:</label>
       <input type="text" id="' . self::POST_TITLE . '" name="' . self::POST_TITLE . '" value="" placeholder="Title.." />
@@ -25,7 +28,7 @@ class PostForm {
       <label for="Message">Note:</label>
       <textarea id="'. self::POST_TEXTFIELD .'" name="'. self::POST_TEXTFIELD .'" value="" placeholder="Your note.."></textarea>
 
-      <input type="submit" name="' . self::NEW_POST_BUTTON .'" value="Post-It!" />
+      <input type="submit" name="' . self::NEW_POST_BUTTON .'" value="Save-It!" />
     </fieldset>
   </form>
 
@@ -36,8 +39,8 @@ class PostForm {
     }
   }
 
-  public function setMessage($message) {
-    $this->message = $message;
+  public function setMessageToUser($message) {
+    $this->messageToUser = $message;
   }
 
   public function getPostTitle() {

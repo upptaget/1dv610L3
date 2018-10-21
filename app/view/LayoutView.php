@@ -1,19 +1,17 @@
 <?php
 
 namespace view;
-
+/**
+ * Renders the application
+ */
 class LayoutView {
-  private $postItView;
   private $postForm;
-  private $userInfo;
   private $showPosts;
-  private $toPosts = 'toPosts';
-  private $show;
 
-  public function __construct ($tpb, $pf, $ui, $sp) {
-    $this->toPostButton = $tpb;
+  private $hasLoggedIn;
+
+  public function __construct ($pf, $sp) {
     $this->postForm = $pf;
-    $this->userInfo = $ui;
     $this->showPosts = $sp;
   }
 
@@ -25,17 +23,20 @@ class LayoutView {
         <title>Login and PostIt</title>
         <h1>PostIt!</h1>
         ' . $showLogin . '
-        ' . $this->postForm->render($this->show) . '
-        ' . $this->showPosts->getPostsHTML() . '
+        ' . $this->postForm->render($this->hasLoggedIn) . '
+        ' . $this->displayPosts() . '
     </html>
   ';
   }
 
-  public function setShow($show) {
-    $this->show = $show;
+  // If user is logged in, the posts and form will be shown
+  public function setHasLoggedIn($loggedIn) {
+    $this->hasLoggedIn = $loggedIn;
   }
 
-  public function setPostsToDisplay($postsHTML) {
-    return 0;
+  public function displayPosts() {
+    if($this->hasLoggedIn) {
+      return $this->showPosts->getPostsHTML();
+    }
   }
 }

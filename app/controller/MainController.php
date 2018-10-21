@@ -42,7 +42,7 @@ class MainController {
     if ($this->session->gotSession()) {
       $this->userInfo->setUsername($this->session->getUsername());
       $this->userInfo->setUserId($this->session->getUserId());
-      $this->layoutView->setShow($this->session->gotSession());
+      $this->layoutView->setHasLoggedIn($this->session->gotSession());
       $this->showPosts->setPosts($this->getPosts->getUserPosts($this->userInfo->getUserId()));
 
       }
@@ -56,10 +56,10 @@ class MainController {
             $this->postForm->getPostMessage(),
             $this->session->getUserId(),
             $this->session->getUsername());
-            $this->postForm->setMessage('Post-It! added!'); // FIXA KLASS FÖR STATISKA STRÄNGAR
+            $this->postForm->setMessageToUser('Post-It! added!'); // FIXA KLASS FÖR STATISKA STRÄNGAR
 
       } catch (\Exception $e) {
-          echo $e->getMessage();
+        $this->postForm->setMessageToUser($e->getMessage());
       }
     }
 
