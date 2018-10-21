@@ -15,10 +15,6 @@ class ShowPosts {
     $this->setPostsHTML();
    }
 
-   public function getPostsHTML() {
-    return $this->postsHTML;
-   }
-
    // Adds every post in posts to html-string to the postsHTML member.
    private function setPostsHTML() {
     foreach ($this->posts as $post) {
@@ -37,7 +33,10 @@ class ShowPosts {
         </div>
 
       ';
+      }
     }
 
-  }
+  public function getPostsHTML() {
+    return $this->postsHTML;
+   }
 }

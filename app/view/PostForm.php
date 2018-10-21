@@ -5,6 +5,8 @@ namespace view;
  * Holds the Post form for new Post-its.
  */
 class PostForm {
+
+  //HTML-Element id's
   const FORM_TITLE = 'Post-It!';
   const NEW_POST_BUTTON = 'new_post_button';
   const POST_TEXTFIELD = 'post-textfield';

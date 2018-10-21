@@ -35,36 +35,35 @@ class MainController {
   }
   public function router() {
 
-    // GET SESSION VARAIBLES
+    // Get session variables
     $this->session->getSession();
 
-    // SET SESSION VARIABLES TO USER VIEW
+    // Set session variables to user view.
     if ($this->session->gotSession()) {
       $this->userInfo->setUsername($this->session->getUsername());
       $this->userInfo->setUserId($this->session->getUserId());
       $this->layoutView->setHasLoggedIn($this->session->gotSession());
-      $this->showPosts->setPosts($this->getPosts->getUserPosts($this->userInfo->getUserId()));
 
-      }
+    }
 
-    // ADDS NEW POST
+    // Adds new post, then up
     if ($this->postForm->newPost()) {
 
       try{
         $this->addPost->addPostToDatabase(
-            $this->postForm->getPostTitle(),
-            $this->postForm->getPostMessage(),
-            $this->session->getUserId(),
-            $this->session->getUsername());
-            $this->postForm->setMessageToUser('Post-It! added!'); // FIXA KLASS FÖR STATISKA STRÄNGAR
-            $this->showPosts->setPosts($this->getPosts->getUserPosts($this->userInfo->getUserId()));
+          $this->postForm->getPostTitle(),
+          $this->postForm->getPostMessage(),
+          $this->session->getUserId(),
+          $this->session->getUsername());
+          $this->postForm->setMessageToUser('Post-It! added!'); // FIXA KLASS FÖR STATISKA STRÄNGAR
 
-      } catch (\Exception $e) {
-        $this->postForm->setMessageToUser($e->getMessage());
+        } catch (\Exception $e) {
+          $this->postForm->setMessageToUser($e->getMessage());
+        }
       }
 
-    }
-
+    //Set users posts to be shown
+    $this->showPosts->setPosts($this->getPosts->getUserPosts($this->userInfo->getUserId()));
   }
 
 

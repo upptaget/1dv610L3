@@ -5,9 +5,12 @@ namespace view;
  * Renders the application
  */
 class LayoutView {
+
+  // View components
   private $postForm;
   private $showPosts;
 
+  //User login status to determine what to show.
   private $hasLoggedIn;
 
   public function __construct ($pf, $sp) {

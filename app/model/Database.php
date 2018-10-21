@@ -2,12 +2,12 @@
 
 namespace model;
 
-require_once('databaseConnectionVars.php');
+require_once('databaseConnectionVars.php'); // THIS IS A .GITIGNORED SETTINGS FILE CONTAINING DATABASE CONNECTION CONSTS.
 
 class Database {
 
 /**
- * Connects to SQL db on localhost.
+ * Connects to SQL db
  *
  */
 public function connectToDatabase () {

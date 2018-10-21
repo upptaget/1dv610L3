@@ -3,6 +3,9 @@ namespace model;
 
 require_once('Database.php');
 
+/**
+ * Adds a post to the database table "posts".
+ */
 class AddPost {
 
   public function addPostToDatabase ($title, $message, $userId, $author) {
@@ -19,10 +22,11 @@ class AddPost {
     $sqlstmt->bindParam(':author', $author);
 
     try {
-    $sqlstmt->execute();
+      $sqlstmt->execute();
     } catch (\Exception $e) {
       throw new \model\NewPostException('Could not save post to database');
     }
+    
     return true;
   }
 
