@@ -6,13 +6,15 @@ class LayoutView {
   private $postItView;
   private $postForm;
   private $userInfo;
+  private $showPosts;
   private $toPosts = 'toPosts';
   private $show;
 
-  public function __construct ($tpb, $pf, $ui) {
+  public function __construct ($tpb, $pf, $ui, $sp) {
     $this->toPostButton = $tpb;
     $this->postForm = $pf;
     $this->userInfo = $ui;
+    $this->showPosts = $sp;
   }
 
   public function render($showLogin) {
@@ -24,11 +26,16 @@ class LayoutView {
         <h1>PostIt!</h1>
         ' . $showLogin . '
         ' . $this->postForm->render($this->show) . '
+        ' . $this->showPosts->getPostsHTML() . '
     </html>
   ';
   }
 
   public function setShow($show) {
     $this->show = $show;
+  }
+
+  public function setPostsToDisplay($postsHTML) {
+    return 0;
   }
 }

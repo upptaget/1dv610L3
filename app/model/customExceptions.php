@@ -6,6 +6,8 @@ use Exception;
 
 class NewPostException extends Exception {}
 
+class GetPostsException extends Exception {}
+
 class EditPostException extends Exception {}
 
 class DeletePostException extends Exception {}

@@ -11,13 +11,25 @@ class MainController {
   private $session;
   private $userInfo;
   private $postForm;
+  private $showPosts;
   private $addPost;
   private $layoutView;
+  private $getPosts;
 
-  public function __construct (\model\Session $s, \model\AddPost $ap, \view\UserInfo $ui, \view\PostForm $pf, \view\LayoutView $lv) {
+  public function __construct (
+    \model\Session $s,
+    \model\GetPosts $gp,
+    \model\AddPost $ap,
+    \view\UserInfo $ui,
+    \view\PostForm $pf,
+    \view\ShowPosts $sp,
+    \view\LayoutView $lv )
+    {
     $this->session = $s;
+    $this->getPosts = $gp;
     $this->userInfo = $ui;
     $this->postForm = $pf;
+    $this->showPosts = $sp;
     $this->addPost = $ap;
     $this->layoutView = $lv;
   }
@@ -30,16 +42,9 @@ class MainController {
     if ($this->session->gotSession()) {
       $this->userInfo->setUsername($this->session->getUsername());
       $this->userInfo->setUserId($this->session->getUserId());
-      $this->session->setPostItSession($this->session->gotSession());
-    }
+      $this->layoutView->setShow($this->session->gotSession());
+      $this->showPosts->setPosts($this->getPosts->getUserPosts($this->userInfo->getUserId()));
 
-    // SET SESSION SO USER STAYS IN POST IT APP
-
-
-
-    if ($this->session->getPostItSession() && $this->session->gotSession())
-      {
-        $this->layoutView->setShow($this->session->getPostItSession());
       }
 
     // ADDS NEW POST
