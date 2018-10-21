@@ -43,6 +43,8 @@ class PostForm {
     $this->messageToUser = $message;
   }
 
+
+   // Returns by user provided title or Exception
   public function getPostTitle() {
 		if (empty($_POST[self::POST_TITLE])) {
 			throw new \Exception('Title is missing');
@@ -50,13 +52,14 @@ class PostForm {
 		return $_POST[self::POST_TITLE];
   }
 
+  // Returns by user provided message or Exception
   public function getPostMessage() {
 		if (empty($_POST[self::POST_TEXTFIELD])) {
 			throw new \Exception('Text is is missing');
     }
 		return $_POST[self::POST_TEXTFIELD];
 	}
-
+  
   public function newPost() {
     return isset($_POST[self::NEW_POST_BUTTON]);
   }

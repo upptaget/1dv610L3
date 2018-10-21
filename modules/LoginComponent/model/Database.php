@@ -2,6 +2,8 @@
 
 namespace LoginSystemModel;
 
+require_once('databaseConnectionVars.php');
+
 class Database {
 
     /**
@@ -10,10 +12,10 @@ class Database {
      */
     public function connectToDatabase () {
 
-      $server = "localhost";
-      $user = "test";
-      $pass = "test";
-      $database = "auth";
+      $server = SERVER;
+      $user = USER;
+      $pass = PASSWORD;
+      $database = DATABASE;
 
       try {
 			 return $connection = new \PDO("mysql:host=$server;dbname=$database;", $user, $pass);

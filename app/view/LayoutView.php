@@ -29,7 +29,6 @@ class LayoutView {
   ';
   }
 
-  // If user is logged in, the posts and form will be shown
   public function setHasLoggedIn($loggedIn) {
     $this->hasLoggedIn = $loggedIn;
   }

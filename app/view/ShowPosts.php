@@ -19,6 +19,7 @@ class ShowPosts {
     return $this->postsHTML;
    }
 
+   // Adds every post in posts to html-string to the postsHTML member.
    private function setPostsHTML() {
     foreach ($this->posts as $post) {
       $this->postsHTML .= '
@@ -28,7 +29,10 @@ class ShowPosts {
             <p>Author: '. $post->author . ' </p>
             <p>Message: '. $post->message . ' </p>
             <p>Time Added: ' . $post->date . ' </p>
-            <button>Delete</button><button>Edit</button>
+            <form>
+            <button type="submit" name"delete_button" value="'.$post->id.'">Delete</button>
+            <button type="submit" name="edit_button" value="'.$post->id.'">Edit</button>
+            </form>
           </fieldset>
         </div>
 
